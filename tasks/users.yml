@@ -1,0 +1,14 @@
+---
+
+- name: configure user aluno
+  win_user:
+        name: aluno
+        state: present
+        user_cannot_change_password: yes
+        password: aluno
+        password_never_expires: yes
+        password_expired: no
+        groups:
+            - Usuários
+
+

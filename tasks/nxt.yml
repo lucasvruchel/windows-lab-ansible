@@ -1,0 +1,25 @@
+---
+- name: Download zip nxt
+  ansible.windows.win_get_url:
+    url: ftp:\\10.1.255.17\NXT_Installer_2.1.0_Global_WIN.zip
+    dest: C:\Users\ti\Downloads\nxt.zip
+
+- name: Unzip nxt
+  community.windows.win_unzip:
+    src: C:\Users\ti\Downloads\nxt.zip
+    dest: C:\Users\ti\Donwloads\nxt_files
+    creates: C:\Users\ti\Downloads\nxt_files
+
+- name: Install nxt
+  ansible.windows.win_package:
+    path: C:\Users\ti\Downloads\nxt_files\setup.exe
+
+- name: Remove nxt_files
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+        - C:\Users\ti\Downloads\nxt.zip
+        - C:\Users\ti\Donwloads\nxt_files
+...
+

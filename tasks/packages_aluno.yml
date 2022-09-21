@@ -1,0 +1,16 @@
+---
+
+- name: install pip packages
+  win_shell: "pip install {{ item }}"
+  loop:
+    - jupyter
+    - matplotlib
+    - sklearn
+    - pandas
+    - seaborn
+    - numpy
+    - tqdm
+    - streamlit
+    - dash
+    - sklearn
+    - matplotlib

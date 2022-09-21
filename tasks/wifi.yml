@@ -1,0 +1,41 @@
+---
+
+- name: disable features on wi-fi 2
+  community.windows.win_net_adapter_feature:
+    interface:
+        - 'Wi-Fi 2'
+    state: disabled
+    component_id:
+    - ms_tcpip6
+    - ms_server
+    - ms_tcpip
+    - ms_msclient
+    - ms_implat
+  ignore_errors: yes
+
+- name: disable features on wi-fi
+  community.windows.win_net_adapter_feature:
+    interface:
+        - 'Wi-Fi'
+    state: disabled
+    component_id:
+    - ms_tcpip6
+    - ms_server
+    - ms_tcpip
+    - ms_msclient
+    - ms_implat
+  ignore_errors: yes
+
+- name: disable features on wi-fi
+  community.windows.win_net_adapter_feature:
+    interface:
+        - 'Wi-Fi*'
+    state: disabled
+    component_id:
+    - ms_tcpip6
+    - ms_server
+    - ms_tcpip
+    - ms_msclient
+    - ms_implat
+  ignore_errors: yes
+

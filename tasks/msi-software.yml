@@ -1,0 +1,19 @@
+---
+
+- name: download package
+  win_get_url: 
+        url: ftp://10.1.255.17/FluxoVento.msi
+        dest: '%TEMP%\fluxo.msi'
+ 
+
+- name: install msi and wait to continue
+  ansible.windows.win_package:
+        path: c:\users\ti\AppData\Local\Temp\fluxo.msi
+        creates_path: C:\Program Files (x86)\FluxoVento\
+        state: present
+
+- name: Create an application shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files (x86)\FluxoVento\fluxovento.exe
+    dest: C:\Users\Public\Desktop\Fluxo Vento.lnk
+    icon: C:\Program Files (x86)\FluxoVento\fluxovento.exe,0

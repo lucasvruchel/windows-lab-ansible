@@ -1,0 +1,29 @@
+---
+- name: Disable windows updates
+  win_dsc:
+    resource_name: Registry
+    Ensure: Present
+    Key: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+    ValueName: NoAutoUpdate
+    ValueData: 1
+    ValueType: Dword
+
+- name: Change power plan to high performance
+  community.windows.win_power_plan:
+    name: Alto desempenho
+
+- name: copy default wallpaper to c:\windows
+  win_copy:
+    src: background.png
+    dest: c:\Windows\wallpaper.png
+
+- name: Set windows to use UTC time otherwise local time
+  win_dsc:
+    resource_name: Registry
+    Ensure: Present
+    Key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation
+    ValueName: TimeZoneInformation
+    ValueData: 1
+    ValueType: Dword
+
+

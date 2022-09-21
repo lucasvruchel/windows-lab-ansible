@@ -2,79 +2,29 @@
 # tasks file for workstation-basic
 #
 
-#- name: Ensure Basic softwares are installed via Chocolatey
-#  win_chocolatey:
-#      name: "{{ item }}"
-#      state: latest
-#  loop:
-#       - 7zip
-#       - googlechrome
-#       - firefox
-#       - vlc
-#       - libreoffice-still
+# # Configuration of Users
+#- import_tasks: users.yml
+
+# # System wide packages
+#- import_tasks: packages.yml
+
+# User specific packages
+#- import_tasks: packages_aluno.yml
+
+# System wide configuration
+- import_tasks: system.yml
+
+# Module that disable ethernet adapter
+- import_tasks: wifi.yml
+- import_tasks: msi-software.yml
 
 
-#- name: install lego EV3
-#  win_package: 
-#        path: http://10.1.255.17/EV3_Classroom_Windows_1.50_Global.msi
-#        state: present
-#        arguments:
-#                - /qn
+
+
   
-- name: install dev tools
-  win_chocolatey:
-        name: "{{ item }}"
-        state: latest
-  loop:
-        - vscode
-        - vscode-arduino
-        - codeblocks
-        - python3
-        - androidstudio
-        - wireshark
-        - netbeans
-        - eclipse
-        - arduino
-        - nodejs
-        - filezilla
-        - putty
-        - winscp
-        - blender
-        - winpcap        
-        - mariadb
-        - mysql-cli
-        - mysql.workbench
-        - pgadmin4
-        - git
-        - postman
-        - virtualbox
-        - virtualbox-guest-additions-guest.install
-        - inkscape
-        - gimp
-        - shotcut
 
 
-- name: install postgres
-  win_chocolatey:
-        name: postgresql
-        state: latest
-        package_params: \Password:postgres  
 
-  ignore_errors: yes
 
-- name: configure user aluno
-  win_user:
-        name: aluno
-        state: present
-        user_cannot_change_password: yes
-        password: aluno
-        password_never_expires: yes
-        password_expired: no
-        groups:
-            - Usuários
 
-- name: update pip
-  win_shell: pip install --upgrade pip
 
-- name: install pip packages
-  win_shell: npm install express bootstrap moment
