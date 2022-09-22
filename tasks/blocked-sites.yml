@@ -1,0 +1,8 @@
+---
+
+
+- name: Insert path without converting \r\n
+  community.windows.win_lineinfile:
+    path: c:\windows\system32\drivers\etc\hosts
+    line: '0.0.0.0      krunker.io'
+    state: present

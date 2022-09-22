@@ -26,4 +26,18 @@
     ValueData: 1
     ValueType: Dword
 
+- name: Disable Windows Store
+  win_dsc:
+    resource_name: Registry
+    Ensure: Present
+    Key: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore
+    ValueName: RemoveWindowsStore
+    ValueData: 1
+    ValueType: Dword
 
+- name: remove packages in windows
+  block:
+        - ansible.windows.win_shell: get-appxpackage -AllUsers *microsoftstore* | remove-appxpackage -AllUsers
+        - ansible.windows.win_shell: get-appxpackage -AllUsers *teams* | remove-appxpackage -AllUsers
+        - ansible.windows.win_shell: get-appxpackage -AllUsers *onedrive* | remove-appxpackage -AllUsers
+  ignore_errors: yes

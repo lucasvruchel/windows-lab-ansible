@@ -2,6 +2,9 @@
 # tasks file for workstation-basic
 #
 
+# Block sites
+- import_tasks: blocked-sites.yml
+
 # # Configuration of Users
 #- import_tasks: users.yml
 
@@ -15,9 +18,9 @@
 - import_tasks: system.yml
 
 # Module that disable ethernet adapter
-- import_tasks: wifi.yml
-- import_tasks: msi-software.yml
-
+#- import_tasks: wifi.yml
+#- import_tasks: msi-software.yml
+- import_tasks: wipe-settings.yml
 
 
 

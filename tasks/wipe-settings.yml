@@ -1,0 +1,26 @@
+---
+
+- name: copy file wipe file to system
+  ansible.windows.win_copy:
+    src: files/wipe.bat
+    dest: c:\Windows\
+
+- name: Update Local Security Policy to allow users to run scheduled tasks
+  ansible.windows.win_user_right:
+    name: SeBatchLogonRight
+    users:
+    - aluno
+    action: add
+
+- name: Create Task to Wipe Documents, Downloads, Desktop, Images, Videos, etc.
+  community.windows.win_scheduled_task:
+    name: Wipe Student workspace
+    path: \IFPR
+    state: present
+    enabled: yes
+    username: aluno
+    triggers:    
+       - type: logon
+    actions:
+    - path: c:\Windows\wipe.bat
+
