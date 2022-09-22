@@ -15,7 +15,7 @@
 #- import_tasks: packages_aluno.yml
 
 # System wide configuration
-- import_tasks: system.yml
+#- import_tasks: system.yml
 
 # Module that disable ethernet adapter
 #- import_tasks: wifi.yml
@@ -23,7 +23,11 @@
 - import_tasks: wipe-settings.yml
 
 
+# Install NXT
+#- import_tasks: nxt.yml
 
+# Install Bricxcc
+- import_tasks: bricxcc.yml
   
 
 

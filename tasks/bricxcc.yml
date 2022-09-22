@@ -1,0 +1,13 @@
+---
+
+
+- name: Download bricxcc
+  ansible.windows.win_get_url:
+    url: ftp://10.1.255.17/ftp/bricxcc_setup_3389.exe
+    dest: C:\Users\ti\Downloads\
+    force: no
+
+- name: Install bricxcc
+  ansible.windows.win_package:
+    path: C:\Users\ti\Download\bricxcc_setup_3389.exe
+    arguments: /quiet
